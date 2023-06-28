@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DirectMessagesVC.swift
 //  TwitterApp
 //
 //  Created by Enes Sancar on 27.06.2023.
@@ -7,13 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class DirectMessagesVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
-
 }
-
