@@ -7,23 +7,85 @@
 
 import UIKit
 
-class HomeVC: UIViewController {
+final class HomeVC: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    private func configureNavigationBar() {
+        let size: CGFloat = 36
+        let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
+        logoImageView.contentMode = .scaleAspectFit
+        logoImageView.image = UIImage(named: Constants.twitterLogo.rawValue)
+        self.navigationItem.titleView = logoImageView
+        
+        let profileImage = UIImage(systemName: "person")
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: profileImage, style: .plain, target: self, action: #selector(didTapProfile))
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    //MARK: - Properties
+    private lazy var  timelineTableView: UITableView = {
+        let tableView = UITableView()
+        tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifer)
+        return tableView
+    }()
+    
+    //MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configureTableView()
+        configureNavigationBar()
     }
-    */
+    
+    private func configureTableView() {
+        view.addSubview(timelineTableView)
+        timelineTableView.delegate = self
+        timelineTableView.dataSource = self
+    }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        timelineTableView.frame = view.frame
+    }
+}
+
+//MARK: - UITableView Delegate/DataSource
+extension HomeVC: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TweetTableViewCell.identifer, for: indexPath) as? TweetTableViewCell else {
+            fatalError("Cell not found")
+        }
+        cell.delegate = self
+        return cell
+    }
+}
+
+//MARK: - TweetTableViewCell Delegate
+extension HomeVC: TweetTableViewCellDelegate {
+    
+    func didTapReply() {
+        print("")
+    }
+    
+    func didTapRetweet() {
+        print("")
+    }
+    
+    func didTapLike() {
+        print("")
+    }
+    
+    func didTapShare() {
+        print("")
+    }
+}
+
+
+//MARK: - Objc Func
+extension HomeVC {
+    @objc private func didTapProfile() {
+        let vc = ProfileVC()
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
