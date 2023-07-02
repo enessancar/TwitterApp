@@ -24,6 +24,12 @@ final class CustomLabel: UILabel {
         self.textColor = textColor
     }
     
+    convenience init(textColor: UIColor, numberOfLines: Int) {
+        self.init(frame: .zero)
+        self.textColor = textColor
+        self.numberOfLines = numberOfLines
+    }
+    
     private func configure() {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.90
