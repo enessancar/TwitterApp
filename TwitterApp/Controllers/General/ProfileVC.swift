@@ -9,10 +9,18 @@ import UIKit
 
 final class ProfileVC: UIViewController {
     
+    private var isStatusBarHidden: Bool = true
+    
     //MARK: - Properties
+    private lazy var statusBar: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemBackground
+        view.layer.opacity = 0
+        return view
+    }()
+    
     private lazy var profileTableView: UITableView = {
         let tableView = UITableView()
-        tableView.backgroundColor = .systemBackground
         tableView.register(TweetTableViewCell.self, forCellReuseIdentifier: TweetTableViewCell.identifer)
         return tableView
     }()
@@ -29,12 +37,15 @@ final class ProfileVC: UIViewController {
     private func configureView() {
         view.backgroundColor = .systemBackground
         navigationItem.title = "Profile"
+        navigationController?.navigationBar.isHidden = true
     }
     
     private func configureTableView() {
-        view.addSubview(profileTableView)
+        view.addSubviews(profileTableView, statusBar)
+        
         profileTableView.delegate = self
         profileTableView.dataSource = self
+        profileTableView.contentInsetAdjustmentBehavior = .never
         
         let headerView = ProfileTableViewHeader(frame: .init(x: 0, y: 0, width: profileTableView.frame.width, height: 380))
         profileTableView.tableHeaderView = headerView
@@ -45,10 +56,13 @@ final class ProfileVC: UIViewController {
         profileTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        statusBar.snp.makeConstraints { make in
+            make.leading.trailing.top.equalToSuperview()
+            make.height.equalTo(view.bounds.height > 800 ? 40 : 20 )
+        }
     }
 }
-
-
 
 //MARK: - TableView Delegate/DataSource
 extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
@@ -62,5 +76,22 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
             fatalError()
         }
         return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yPosition = scrollView.contentOffset.y
+        if yPosition > 150 && statusBar.isHidden {
+            isStatusBarHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveLinear) { [weak self] in
+                guard let self else { return }
+                self.statusBar.layer.opacity = 1
+            }
+        } else if yPosition < 0 && !isStatusBarHidden {
+            isStatusBarHidden = true
+            UIView.animate(withDuration: 0.3, delay: 0) { [weak self] in
+                guard let self else { return }
+                self.statusBar.layer.opacity = 0
+            }
+        }
     }
 }

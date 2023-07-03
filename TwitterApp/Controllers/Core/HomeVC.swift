@@ -34,6 +34,11 @@ final class HomeVC: UIViewController {
         configureNavigationBar()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+    }
+    
     private func configureTableView() {
         view.addSubview(timelineTableView)
         timelineTableView.delegate = self
