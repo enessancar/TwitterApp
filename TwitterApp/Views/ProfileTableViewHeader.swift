@@ -37,13 +37,60 @@ final class ProfileTableViewHeader: UIView {
         return button
     }
     
+    private enum SectionTabs: String {
+        case tweets = "Tweets"
+        case tweetsAndReplies = "Tweets & Replies"
+        case media = "Media"
+        case likes = "Likes"
+        
+        var index: Int {
+            switch self {
+            case .tweets:
+                return 0
+            case .tweetsAndReplies:
+                return 1
+            case .media:
+                return 2
+            case .likes:
+                return 3
+            }
+        }
+    }
+    
+    private var leadingAnchors: [NSLayoutConstraint] = []
+    private var trailingAnchors: [NSLayoutConstraint] = []
+    
+    private let indicator: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
+        return view
+    }()
+    
+    private var selectedTab: Int = 0 {
+        didSet {
+            for i in 0..<tabs.count {
+                UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut) { [weak self] in
+                    guard let self else { return }
+                    
+                    self.sectionStack.arrangedSubviews[i].tintColor = i == self.selectedTab ? .label : .secondaryLabel
+                    self.leadingAnchors[i].isActive = i == self.selectedTab ? true : false
+                    self.trailingAnchors[i].isActive = i == self.selectedTab ? true : false
+                    self.layoutIfNeeded()
+                }
+                
+            }
+        }
+    }
+    
     private lazy var sectionStack: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: tabs)
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalSpacing
         stackView.axis = .horizontal
         stackView.alignment = .center
         return stackView
     }()
+    
     
     //MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -51,6 +98,7 @@ final class ProfileTableViewHeader: UIView {
         
         configureView()
         configureConstraints()
+        configureStackButton()
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +109,7 @@ final class ProfileTableViewHeader: UIView {
         addSubviewsList(
             [
                 profileHeaderImageView, profileAvatarImageView, displayNameLabel, usernameLabel, userBiolabel, joinDateImageView, joinDateLabel,
-                followingCountLabel, followingTextLabel, followerCountLabel, followerTextLabel, sectionStack
+                followingCountLabel, followingTextLabel, followerCountLabel, followerTextLabel, sectionStack, indicator
             ])
         
         
@@ -76,6 +124,37 @@ final class ProfileTableViewHeader: UIView {
         followingTextLabel.text = "Following"
         followerTextLabel.text = "Followers"
         followerCountLabel.text = "1234"
+    }
+    
+    private func configureStackButton() {
+        for (i, button) in sectionStack.arrangedSubviews.enumerated() {
+            guard let button = button as? UIButton else { return }
+            
+            if i == selectedTab {
+                button.tintColor = .label
+            } else {
+                button.tintColor = .secondaryLabel
+            }
+            
+            button.addTarget(self, action: #selector(didTapTab(_:)), for: .touchUpInside)
+        }
+    }
+    
+    @objc private func didTapTab(_ sender: UIButton) {
+        guard let label = sender.titleLabel?.text else { return }
+        
+        switch label {
+        case SectionTabs.tweets.rawValue:
+            selectedTab = 0
+        case SectionTabs.tweetsAndReplies.rawValue:
+            selectedTab = 1
+        case SectionTabs.media.rawValue:
+            selectedTab = 2
+        case SectionTabs.likes.rawValue:
+            selectedTab = 3
+        default:
+            selectedTab = 0
+        }
     }
     
     private func configureConstraints() {
@@ -140,6 +219,22 @@ final class ProfileTableViewHeader: UIView {
             make.leading.equalToSuperview().offset(25)
             make.trailing.equalToSuperview().offset(-25)
             make.top.equalTo(followingCountLabel.snp.bottom).offset(5)
+            make.height.equalTo(35)
         }
+        
+        for i in 0..<tabs.count {
+            let leadingAnchor = indicator.leadingAnchor.constraint(equalTo: sectionStack.arrangedSubviews[i].leadingAnchor)
+            leadingAnchors.append(leadingAnchor)
+            let trailingAnchor = indicator.trailingAnchor.constraint(equalTo: sectionStack.arrangedSubviews[i].trailingAnchor)
+            trailingAnchors.append(trailingAnchor)
+        }
+        
+        let indicatorConstraints = [
+            leadingAnchors[0],
+            trailingAnchors[0],
+            indicator.topAnchor.constraint(equalTo: sectionStack.arrangedSubviews[0].bottomAnchor),
+            indicator.heightAnchor.constraint(equalToConstant: 4)
+        ]
+        NSLayoutConstraint.activate(indicatorConstraints)
     }
 }
