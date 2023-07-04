@@ -13,4 +13,11 @@ enum Constants: String {
     case shareIcon = "square.and.arrow.up"
     case retweetIcon = "arrow.2.squarepath"
     case replyIcon = "bubble.left"
+    
+    enum Onboarding: String {
+        case welcomeLabel = "See what's happening in the world right now."
+        case createAccount = "Create account"
+        case promptLabel = "Have an account already?"
+        case login = "Log in"
+    }
 }

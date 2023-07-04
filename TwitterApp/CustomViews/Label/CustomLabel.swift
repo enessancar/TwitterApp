@@ -30,9 +30,25 @@ final class CustomLabel: UILabel {
         self.numberOfLines = numberOfLines
     }
     
+    convenience init(text: String, textColor: UIColor, fontSize: CGFloat, weight: UIFont.Weight, textAlignment: NSTextAlignment) {
+        self.init(frame: .zero)
+        self.text = text
+        self.textColor = textColor
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
+        self.textAlignment = textAlignment
+    }
+    
+    convenience init(text: String, textColor: UIColor, fontSize: CGFloat, weight: UIFont.Weight) {
+        self.init(frame: .zero)
+        self.text = text
+        self.textColor = textColor
+        self.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
+    }
+    
     private func configure() {
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.90
         lineBreakMode = .byTruncatingTail
+        numberOfLines = 0
     }
 }

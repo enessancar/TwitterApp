@@ -6,9 +6,10 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 final class HomeVC: UIViewController {
-
+    
     private func configureNavigationBar() {
         let size: CGFloat = 36
         let logoImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: size, height: size))
@@ -37,6 +38,12 @@ final class HomeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        
+        if Auth.auth().currentUser == nil {
+            let vc = UINavigationController(rootViewController: OnboardingVC())
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: false)
+        }
     }
     
     private func configureTableView() {
@@ -44,7 +51,7 @@ final class HomeVC: UIViewController {
         timelineTableView.delegate = self
         timelineTableView.dataSource = self
     }
-
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         timelineTableView.frame = view.frame
