@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		EC06C53B2A558F78006FE74A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53A2A558F78006FE74A /* CustomButton.swift */; };
 		EC64F7982A53613900C900DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC64F7972A53613900C900DC /* GoogleService-Info.plist */; };
 		EC64F79B2A53F91E00C900DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79A2A53F91E00C900DC /* FirebaseAuth */; };
 		EC64F79D2A53F91E00C900DC /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79C2A53F91E00C900DC /* FirebaseAuthCombine-Community */; };
@@ -19,6 +20,7 @@
 		EC64F7AB2A53F91E00C900DC /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F7AA2A53F91E00C900DC /* FirebaseStorageCombine-Community */; };
 		EC64F7AE2A54287500C900DC /* OnboardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64F7AD2A54287500C900DC /* OnboardingVC.swift */; };
 		EC64F7B02A54440800C900DC /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64F7AF2A54440800C900DC /* Color+Ext.swift */; };
+		EC64F7B22A54699900C900DC /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64F7B12A54699900C900DC /* RegisterVC.swift */; };
 		ECE6F0712A4B7B8E000FA778 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE6F0702A4B7B8E000FA778 /* AppDelegate.swift */; };
 		ECE6F0732A4B7B8E000FA778 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE6F0722A4B7B8E000FA778 /* SceneDelegate.swift */; };
 		ECE6F0752A4B7B8E000FA778 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE6F0742A4B7B8E000FA778 /* MainTabBarVC.swift */; };
@@ -40,9 +42,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		EC06C53A2A558F78006FE74A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		EC64F7972A53613900C900DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC64F7AD2A54287500C900DC /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		EC64F7AF2A54440800C900DC /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		EC64F7B12A54699900C900DC /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		ECE6F06D2A4B7B8E000FA778 /* TwitterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE6F0702A4B7B8E000FA778 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECE6F0722A4B7B8E000FA778 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				EC64F7AD2A54287500C900DC /* OnboardingVC.swift */,
+				EC64F7B12A54699900C900DC /* RegisterVC.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				ECE6F09B2A4CD210000FA778 /* TweetButton.swift */,
+				EC06C53A2A558F78006FE74A /* CustomButton.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -313,6 +319,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECE6F0752A4B7B8E000FA778 /* MainTabBarVC.swift in Sources */,
+				EC06C53B2A558F78006FE74A /* CustomButton.swift in Sources */,
 				ECE6F0992A4CA62F000FA778 /* CustomLabel.swift in Sources */,
 				ECE6F08B2A4B8416000FA778 /* NotificationsVC.swift in Sources */,
 				ECE6F0892A4B83ED000FA778 /* DirectMessagesVC.swift in Sources */,
@@ -327,6 +334,7 @@
 				ECE6F0A42A4F09CF000FA778 /* ProfileVC.swift in Sources */,
 				ECE6F0922A4BF740000FA778 /* TweetTableViewCell.swift in Sources */,
 				ECE6F09C2A4CD210000FA778 /* TweetButton.swift in Sources */,
+				EC64F7B22A54699900C900DC /* RegisterVC.swift in Sources */,
 				ECE6F09F2A4CDE2B000FA778 /* UIView+Ext.swift in Sources */,
 				ECE6F0A12A4EFD70000FA778 /* Constants.swift in Sources */,
 			);

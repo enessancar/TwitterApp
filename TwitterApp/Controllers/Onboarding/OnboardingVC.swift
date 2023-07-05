@@ -13,16 +13,7 @@ final class OnboardingVC: UIViewController {
     //MARK: - Properties
     private lazy var welcomeLabel = CustomLabel(text: Constants.Onboarding.welcomeLabel.rawValue, textColor: .label ,fontSize: 32, weight: .heavy, textAlignment: .center)
     
-    private let createAccountButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle(Constants.Onboarding.createAccount.rawValue, for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 24, weight: .bold)
-        button.backgroundColor = .twitterBlue
-        button.tintColor = .white
-        button.layer.masksToBounds = true
-        button.layer.cornerRadius = 30
-        return button
-    }()
+    private let createAccountButton = CustomButton(title: Constants.Onboarding.createAccount.rawValue, tintColor: .white, backgroundColor: .twitterBlue, fontSize: 24, weight: .bold, cornerRadius: 30)
     
     private lazy var promptLabel = CustomLabel(text: Constants.Onboarding.promptLabel.rawValue, textColor: .gray, fontSize: 14, weight: .regular)
     
@@ -46,6 +37,8 @@ extension OnboardingVC {
     private func configureView() {
         view.backgroundColor = .systemBackground
         view.addSubviews(welcomeLabel, createAccountButton, promptLabel, loginButton)
+        
+        createAccountButton.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
     }
     
     private func configureConstraints() {
@@ -70,5 +63,14 @@ extension OnboardingVC {
             make.leading.equalTo(promptLabel.snp.trailing).offset(10)
             make.centerY.equalTo(promptLabel.snp.centerY)
         }
+    }
+}
+
+//MARK: - Objc Func
+extension OnboardingVC {
+    @objc
+    private func didTapCreateAccount() {
+        let vc = RegisterVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

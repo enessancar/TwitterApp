@@ -20,4 +20,11 @@ enum Constants: String {
         case promptLabel = "Have an account already?"
         case login = "Log in"
     }
+    
+    enum Register: String {
+        case registerTitle = "Create your account"
+        case email = "Email"
+        case password = "Password"
+        case createAccount = "Create Account"
+    }
 }
