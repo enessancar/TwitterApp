@@ -52,6 +52,11 @@ final class RegisterVC: UIViewController {
             self.registerButton.isEnabled = validationState
         }
         .store(in: &subscription)
+        viewModel.$user.sink { [weak self] user in
+            guard let self else { return }
+            
+        }
+        .store(in: &subscription)
     }
     
     override func viewDidLoad() {
@@ -71,6 +76,7 @@ extension RegisterVC {
         
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
         
+        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
     }
     
     private func configureConstraints() {
@@ -115,5 +121,9 @@ extension RegisterVC {
     
     @objc private func didTapToDismiss() {
         view.endEditing(true)
+    }
+    
+    @objc private func didTapRegister() {
+        viewModel.createUser()
     }
 }

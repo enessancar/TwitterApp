@@ -6,12 +6,17 @@
 //
 
 import Foundation
+import Firebase
+import Combine
 
 final class RegisterViewViewModel: ObservableObject {
     
     @Published var email: String?
     @Published var password: String?
     @Published var isRegistrationFormValid: Bool = false
+    @Published var user: User?
+    
+    private var subscription: Set<AnyCancellable> = []
     
     func validateRegistrationForm() {
         guard let email, let password else {
@@ -26,5 +31,17 @@ final class RegisterViewViewModel: ObservableObject {
         
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
+    }
+    
+    func createUser() {
+        guard let email, let password else { return }
+        AuthManager.shared.registerUser(email: email, password: password)
+            .sink { _ in
+                
+            } receiveValue: { [weak self] user in
+                guard let self else { return }
+                self.user = user
+            }
+            .store(in: &subscription)
     }
 }
