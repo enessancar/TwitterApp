@@ -7,8 +7,12 @@
 
 import UIKit
 import SnapKit
+import Combine
 
 final class RegisterVC: UIViewController {
+    
+    private var viewModel = RegisterViewViewModel()
+    private var subscription: Set<AnyCancellable> = []
     
     //MARK: - Properties
     private lazy var registerTitleLabel = CustomLabel(text: Constants.Register.registerTitle.rawValue, textColor: .label, fontSize: 32, weight: .bold)
@@ -16,6 +20,7 @@ final class RegisterVC: UIViewController {
     private let emailTextField: UITextField = {
         let textField = UITextField()
         textField.attributedPlaceholder = NSAttributedString(string: Constants.Register.email.rawValue,attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        textField.keyboardType = .emailAddress
         return textField
     }()
     
@@ -26,19 +31,46 @@ final class RegisterVC: UIViewController {
         return textField
     }()
     
-    private let registerButton = CustomButton(title: Constants.Register.createAccount.rawValue, tintColor: .white, backgroundColor: .twitterBlue, fontSize: 16, weight: .bold, cornerRadius: 25)
+    private let registerButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle(Constants.Register.createAccount.rawValue, for: .normal)
+        button.tintColor = .white
+        button.backgroundColor = .twitterBlue
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.isEnabled = false
+        return button
+    }()
+    
+    private func bindViews() {
+        emailTextField.addTarget(self, action: #selector(didChangeEmailField), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(didChangePasswordField), for: .editingChanged)
+        
+        viewModel.$isRegistrationFormValid.sink { [weak self] validationState in
+            guard let self else { return }
+            self.registerButton.isEnabled = validationState
+        }
+        .store(in: &subscription)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureView()
         configureConstraints()
+        bindViews()
     }
 }
 
 extension RegisterVC {
     private func configureView() {
         view.backgroundColor = .systemBackground
+        
         view.addSubviews(registerTitleLabel, emailTextField, passwordTextField, registerButton)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
+        
     }
     
     private func configureConstraints() {
@@ -66,5 +98,22 @@ extension RegisterVC {
             make.width.equalTo(180)
             make.height.equalTo(50)
         }
+    }
+}
+
+//MARK: - Objc Func
+extension RegisterVC {
+    @objc private func didChangeEmailField() {
+        viewModel.email = emailTextField.text
+        viewModel.validateRegistrationForm()
+    }
+    
+    @objc private func didChangePasswordField() {
+        viewModel.password = passwordTextField.text
+        viewModel.validateRegistrationForm()
+    }
+    
+    @objc private func didTapToDismiss() {
+        view.endEditing(true)
     }
 }

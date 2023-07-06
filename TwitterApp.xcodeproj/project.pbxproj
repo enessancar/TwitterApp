@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EC06C53B2A558F78006FE74A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53A2A558F78006FE74A /* CustomButton.swift */; };
+		EC06C53E2A55C81D006FE74A /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53D2A55C81D006FE74A /* RegisterViewViewModel.swift */; };
 		EC64F7982A53613900C900DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC64F7972A53613900C900DC /* GoogleService-Info.plist */; };
 		EC64F79B2A53F91E00C900DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79A2A53F91E00C900DC /* FirebaseAuth */; };
 		EC64F79D2A53F91E00C900DC /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79C2A53F91E00C900DC /* FirebaseAuthCombine-Community */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		EC06C53A2A558F78006FE74A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		EC06C53D2A55C81D006FE74A /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
 		EC64F7972A53613900C900DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC64F7AD2A54287500C900DC /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		EC64F7AF2A54440800C900DC /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -89,6 +91,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		EC06C53C2A55C80B006FE74A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				EC06C53D2A55C81D006FE74A /* RegisterViewViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		EC64F7AC2A54282700C900DC /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
@@ -120,6 +130,7 @@
 				ECE6F0842A4B7FBD000FA778 /* Support */,
 				ECE6F09D2A4CDE1A000FA778 /* Extensions */,
 				ECE6F0962A4CA5F5000FA778 /* CustomViews */,
+				EC06C53C2A55C80B006FE74A /* ViewModels */,
 				ECE6F0902A4BF72A000FA778 /* Views */,
 				ECE6F0862A4B83AA000FA778 /* Controllers */,
 			);
@@ -328,6 +339,7 @@
 				ECE6F08D2A4B8430000FA778 /* HomeVC.swift in Sources */,
 				ECE6F0712A4B7B8E000FA778 /* AppDelegate.swift in Sources */,
 				ECE6F0A62A4F4E75000FA778 /* ProfileTableViewHeader.swift in Sources */,
+				EC06C53E2A55C81D006FE74A /* RegisterViewViewModel.swift in Sources */,
 				ECE6F0732A4B7B8E000FA778 /* SceneDelegate.swift in Sources */,
 				EC64F7AE2A54287500C900DC /* OnboardingVC.swift in Sources */,
 				ECE6F08F2A4B844A000FA778 /* SearchVC.swift in Sources */,
