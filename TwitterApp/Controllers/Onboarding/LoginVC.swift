@@ -1,21 +1,21 @@
 //
-//  RegisterVC.swift
+//  LoginVC.swift
 //  TwitterApp
 //
-//  Created by Enes Sancar on 4.07.2023.
+//  Created by Enes Sancar on 6.07.2023.
 //
 
 import UIKit
 import SnapKit
 import Combine
 
-final class RegisterVC: UIViewController {
+final class LoginVC: UIViewController {
     
     private var viewModel = AuthenticationViewViewModel()
     private var subscription: Set<AnyCancellable> = []
     
     //MARK: - Properties
-    private lazy var registerTitleLabel = CustomLabel(text: Constants.Register.registerTitle.rawValue, textColor: .label, fontSize: 32, weight: .bold)
+    private lazy var loginTitleLabel = CustomLabel(text: Constants.Login.login.rawValue, textColor: .label, fontSize: 32, weight: .bold)
     
     private let emailTextField: UITextField = {
         let textField = UITextField()
@@ -31,9 +31,9 @@ final class RegisterVC: UIViewController {
         return textField
     }()
     
-    private let registerButton: UIButton = {
+    private let loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle(Constants.Register.createAccount.rawValue, for: .normal)
+        button.setTitle(Constants.Login.loginButton.rawValue, for: .normal)
         button.tintColor = .white
         button.backgroundColor = Colors.twitterBlue
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
@@ -49,7 +49,7 @@ final class RegisterVC: UIViewController {
         
         viewModel.$isAuthenticationFormValid.sink { [weak self] validationState in
             guard let self else { return }
-            self.registerButton.isEnabled = validationState
+            self.loginButton.isEnabled = validationState
         }
         .store(in: &subscription)
         viewModel.$user.sink { [weak self] user in
@@ -62,10 +62,9 @@ final class RegisterVC: UIViewController {
             vc.dismiss(animated: true)
         }
         .store(in: &subscription)
-        
-        
     }
     
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -75,26 +74,24 @@ final class RegisterVC: UIViewController {
     }
 }
 
-extension RegisterVC {
+extension LoginVC {
     private func configureView() {
         view.backgroundColor = .systemBackground
         
-        view.addSubviews(registerTitleLabel, emailTextField, passwordTextField, registerButton)
+        view.addSubviews(loginTitleLabel, emailTextField, passwordTextField, loginButton)
         
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapToDismiss)))
-        
-        registerButton.addTarget(self, action: #selector(didTapRegister), for: .touchUpInside)
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
     }
     
     private func configureConstraints() {
-        registerTitleLabel.snp.makeConstraints { make in
+        loginTitleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(20)
         }
         
         emailTextField.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
-            make.top.equalTo(registerTitleLabel.snp.bottom).offset(20)
+            make.top.equalTo(loginTitleLabel.snp.bottom).offset(20)
             make.width.equalTo(view.frame.width - 40)
             make.centerX.equalToSuperview()
             make.height.equalTo(60)
@@ -105,7 +102,7 @@ extension RegisterVC {
             make.leading.height.width.centerX.equalTo(emailTextField)
         }
         
-        registerButton.snp.makeConstraints { make in
+        loginButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(passwordTextField.snp.bottom).offset(20)
             make.width.equalTo(180)
@@ -115,7 +112,7 @@ extension RegisterVC {
 }
 
 //MARK: - Objc Func
-extension RegisterVC {
+extension LoginVC {
     @objc private func didChangeEmailField() {
         viewModel.email = emailTextField.text
         viewModel.validateAuthenticationForm()
@@ -130,7 +127,7 @@ extension RegisterVC {
         view.endEditing(true)
     }
     
-    @objc private func didTapRegister() {
-        viewModel.createUser()
+    @objc private func didTapLogin() {
+        viewModel.loginUser()
     }
 }

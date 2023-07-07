@@ -8,8 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		EC06C53B2A558F78006FE74A /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53A2A558F78006FE74A /* CustomButton.swift */; };
-		EC06C53E2A55C81D006FE74A /* RegisterViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53D2A55C81D006FE74A /* RegisterViewViewModel.swift */; };
+		EC06C53E2A55C81D006FE74A /* AuthenticationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53D2A55C81D006FE74A /* AuthenticationViewViewModel.swift */; };
 		EC06C5412A56CD2E006FE74A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5402A56CD2E006FE74A /* AuthManager.swift */; };
+		EC06C5432A5711CC006FE74A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5422A5711CC006FE74A /* LoginVC.swift */; };
 		EC64F7982A53613900C900DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC64F7972A53613900C900DC /* GoogleService-Info.plist */; };
 		EC64F79B2A53F91E00C900DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79A2A53F91E00C900DC /* FirebaseAuth */; };
 		EC64F79D2A53F91E00C900DC /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79C2A53F91E00C900DC /* FirebaseAuthCombine-Community */; };
@@ -45,8 +46,9 @@
 
 /* Begin PBXFileReference section */
 		EC06C53A2A558F78006FE74A /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
-		EC06C53D2A55C81D006FE74A /* RegisterViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewViewModel.swift; sourceTree = "<group>"; };
+		EC06C53D2A55C81D006FE74A /* AuthenticationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewViewModel.swift; sourceTree = "<group>"; };
 		EC06C5402A56CD2E006FE74A /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
+		EC06C5422A5711CC006FE74A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		EC64F7972A53613900C900DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC64F7AD2A54287500C900DC /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		EC64F7AF2A54440800C900DC /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -96,7 +98,7 @@
 		EC06C53C2A55C80B006FE74A /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				EC06C53D2A55C81D006FE74A /* RegisterViewViewModel.swift */,
+				EC06C53D2A55C81D006FE74A /* AuthenticationViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -114,6 +116,7 @@
 			children = (
 				EC64F7AD2A54287500C900DC /* OnboardingVC.swift */,
 				EC64F7B12A54699900C900DC /* RegisterVC.swift */,
+				EC06C5422A5711CC006FE74A /* LoginVC.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -340,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC06C5432A5711CC006FE74A /* LoginVC.swift in Sources */,
 				ECE6F0752A4B7B8E000FA778 /* MainTabBarVC.swift in Sources */,
 				EC06C5412A56CD2E006FE74A /* AuthManager.swift in Sources */,
 				EC06C53B2A558F78006FE74A /* CustomButton.swift in Sources */,
@@ -351,7 +355,7 @@
 				ECE6F08D2A4B8430000FA778 /* HomeVC.swift in Sources */,
 				ECE6F0712A4B7B8E000FA778 /* AppDelegate.swift in Sources */,
 				ECE6F0A62A4F4E75000FA778 /* ProfileTableViewHeader.swift in Sources */,
-				EC06C53E2A55C81D006FE74A /* RegisterViewViewModel.swift in Sources */,
+				EC06C53E2A55C81D006FE74A /* AuthenticationViewViewModel.swift in Sources */,
 				ECE6F0732A4B7B8E000FA778 /* SceneDelegate.swift in Sources */,
 				EC64F7AE2A54287500C900DC /* OnboardingVC.swift in Sources */,
 				ECE6F08F2A4B844A000FA778 /* SearchVC.swift in Sources */,

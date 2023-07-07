@@ -7,8 +7,6 @@
 
 import UIKit
 
-extension UIColor {
-    
-    static public var twitterBlue: UIColor { UIColor(named: "twitterBlue")!}
-    
+enum Colors {
+    static let twitterBlue = UIColor(named: "twitterBlue")!
 }

@@ -27,4 +27,13 @@ enum Constants: String {
         case password = "Password"
         case createAccount = "Create Account"
     }
+    
+    enum Home: String {
+         case signOut = "rectangle.portrait.and.arrow.right"
+    }
+    
+    enum Login: String {
+        case login = "Login to your account"
+        case loginButton = "Login"
+    }
 }

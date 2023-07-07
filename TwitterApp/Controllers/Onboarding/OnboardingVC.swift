@@ -13,7 +13,7 @@ final class OnboardingVC: UIViewController {
     //MARK: - Properties
     private lazy var welcomeLabel = CustomLabel(text: Constants.Onboarding.welcomeLabel.rawValue, textColor: .label ,fontSize: 32, weight: .heavy, textAlignment: .center)
     
-    private let createAccountButton = CustomButton(title: Constants.Onboarding.createAccount.rawValue, tintColor: .white, backgroundColor: .twitterBlue, fontSize: 24, weight: .bold, cornerRadius: 30)
+    private let createAccountButton = CustomButton(title: Constants.Onboarding.createAccount.rawValue, tintColor: .white, backgroundColor: Colors.twitterBlue, fontSize: 24, weight: .bold, cornerRadius: 30)
     
     private lazy var promptLabel = CustomLabel(text: Constants.Onboarding.promptLabel.rawValue, textColor: .gray, fontSize: 14, weight: .regular)
     
@@ -21,7 +21,7 @@ final class OnboardingVC: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle(Constants.Onboarding.login.rawValue, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
-        button.tintColor = .twitterBlue
+        button.tintColor = Colors.twitterBlue
         return button
     }()
     
@@ -39,6 +39,8 @@ extension OnboardingVC {
         view.addSubviews(welcomeLabel, createAccountButton, promptLabel, loginButton)
         
         createAccountButton.addTarget(self, action: #selector(didTapCreateAccount), for: .touchUpInside)
+        
+        loginButton.addTarget(self, action: #selector(didTapLogin), for: .touchUpInside)
     }
     
     private func configureConstraints() {
@@ -71,6 +73,12 @@ extension OnboardingVC {
     @objc
     private func didTapCreateAccount() {
         let vc = RegisterVC()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc
+    private func didTapLogin() {
+        let vc = LoginVC()
         navigationController?.pushViewController(vc, animated: true)
     }
 }

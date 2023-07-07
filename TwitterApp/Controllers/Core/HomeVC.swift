@@ -33,17 +33,22 @@ final class HomeVC: UIViewController {
         super.viewDidLoad()
         configureTableView()
         configureNavigationBar()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constants.Home.signOut.rawValue), style: .plain, target: self, action: #selector(didTapSignOut))
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = false
-        
+    private func handleAuthentication() {
         if Auth.auth().currentUser == nil {
             let vc = UINavigationController(rootViewController: OnboardingVC())
             vc.modalPresentationStyle = .fullScreen
             present(vc, animated: false)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
+        handleAuthentication()
     }
     
     private func configureTableView() {
@@ -99,5 +104,10 @@ extension HomeVC {
     @objc private func didTapProfile() {
         let vc = ProfileVC()
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    @objc private func didTapSignOut() {
+        try? Auth.auth().signOut()
+        handleAuthentication()
     }
 }
