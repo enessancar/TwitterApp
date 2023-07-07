@@ -11,6 +11,9 @@
 		EC06C53E2A55C81D006FE74A /* AuthenticationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C53D2A55C81D006FE74A /* AuthenticationViewViewModel.swift */; };
 		EC06C5412A56CD2E006FE74A /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5402A56CD2E006FE74A /* AuthManager.swift */; };
 		EC06C5432A5711CC006FE74A /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5422A5711CC006FE74A /* LoginVC.swift */; };
+		EC06C5462A57F095006FE74A /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5452A57F095006FE74A /* TwitterUser.swift */; };
+		EC06C5482A57F7A7006FE74A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5472A57F7A7006FE74A /* DatabaseManager.swift */; };
+		EC06C54A2A57FFD6006FE74A /* Alert+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5492A57FFD6006FE74A /* Alert+Ext.swift */; };
 		EC64F7982A53613900C900DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC64F7972A53613900C900DC /* GoogleService-Info.plist */; };
 		EC64F79B2A53F91E00C900DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79A2A53F91E00C900DC /* FirebaseAuth */; };
 		EC64F79D2A53F91E00C900DC /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79C2A53F91E00C900DC /* FirebaseAuthCombine-Community */; };
@@ -49,6 +52,9 @@
 		EC06C53D2A55C81D006FE74A /* AuthenticationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewViewModel.swift; sourceTree = "<group>"; };
 		EC06C5402A56CD2E006FE74A /* AuthManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		EC06C5422A5711CC006FE74A /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		EC06C5452A57F095006FE74A /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
+		EC06C5472A57F7A7006FE74A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
+		EC06C5492A57FFD6006FE74A /* Alert+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Ext.swift"; sourceTree = "<group>"; };
 		EC64F7972A53613900C900DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC64F7AD2A54287500C900DC /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		EC64F7AF2A54440800C900DC /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -107,8 +113,17 @@
 			isa = PBXGroup;
 			children = (
 				EC06C5402A56CD2E006FE74A /* AuthManager.swift */,
+				EC06C5472A57F7A7006FE74A /* DatabaseManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		EC06C5442A57F06E006FE74A /* Mdel */ = {
+			isa = PBXGroup;
+			children = (
+				EC06C5452A57F095006FE74A /* TwitterUser.swift */,
+			);
+			path = Mdel;
 			sourceTree = "<group>";
 		};
 		EC64F7AC2A54282700C900DC /* Onboarding */ = {
@@ -142,8 +157,9 @@
 			children = (
 				ECE6F0842A4B7FBD000FA778 /* Support */,
 				ECE6F09D2A4CDE1A000FA778 /* Extensions */,
-				EC06C53F2A56CD1C006FE74A /* Networking */,
 				ECE6F0962A4CA5F5000FA778 /* CustomViews */,
+				EC06C53F2A56CD1C006FE74A /* Networking */,
+				EC06C5442A57F06E006FE74A /* Mdel */,
 				EC06C53C2A55C80B006FE74A /* ViewModels */,
 				ECE6F0902A4BF72A000FA778 /* Views */,
 				ECE6F0862A4B83AA000FA778 /* Controllers */,
@@ -236,6 +252,7 @@
 				ECE6F09E2A4CDE2B000FA778 /* UIView+Ext.swift */,
 				ECE6F0A02A4EFD70000FA778 /* Constants.swift */,
 				EC64F7AF2A54440800C900DC /* Color+Ext.swift */,
+				EC06C5492A57FFD6006FE74A /* Alert+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -351,14 +368,17 @@
 				ECE6F08B2A4B8416000FA778 /* NotificationsVC.swift in Sources */,
 				ECE6F0892A4B83ED000FA778 /* DirectMessagesVC.swift in Sources */,
 				EC64F7B02A54440800C900DC /* Color+Ext.swift in Sources */,
+				EC06C5482A57F7A7006FE74A /* DatabaseManager.swift in Sources */,
 				ECE6F0A92A4F5AFD000FA778 /* CustomImageView.swift in Sources */,
 				ECE6F08D2A4B8430000FA778 /* HomeVC.swift in Sources */,
 				ECE6F0712A4B7B8E000FA778 /* AppDelegate.swift in Sources */,
 				ECE6F0A62A4F4E75000FA778 /* ProfileTableViewHeader.swift in Sources */,
 				EC06C53E2A55C81D006FE74A /* AuthenticationViewViewModel.swift in Sources */,
+				EC06C54A2A57FFD6006FE74A /* Alert+Ext.swift in Sources */,
 				ECE6F0732A4B7B8E000FA778 /* SceneDelegate.swift in Sources */,
 				EC64F7AE2A54287500C900DC /* OnboardingVC.swift in Sources */,
 				ECE6F08F2A4B844A000FA778 /* SearchVC.swift in Sources */,
+				EC06C5462A57F095006FE74A /* TwitterUser.swift in Sources */,
 				ECE6F0A42A4F09CF000FA778 /* ProfileVC.swift in Sources */,
 				ECE6F0922A4BF740000FA778 /* TweetTableViewCell.swift in Sources */,
 				ECE6F09C2A4CD210000FA778 /* TweetButton.swift in Sources */,

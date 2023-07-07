@@ -62,6 +62,12 @@ final class LoginVC: UIViewController {
             vc.dismiss(animated: true)
         }
         .store(in: &subscription)
+        
+        viewModel.$error.sink { [weak self] errorString in
+            guard let self, let error = errorString else { return }
+            self.showAlert(title: "Error", alertMessage: error)
+        }
+        .store(in: &subscription)
     }
     
     //MARK: - Lifecycle
