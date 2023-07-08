@@ -20,6 +20,9 @@ class DatabaseManager {
     
     func collectionUsers(add user: User) -> AnyPublisher<Bool, Error> {
         let twitterUser = TwitterUser(from: user)
-        twitterUser
+        return db.collection(userPath).document(twitterUser.id).setData(from: twitterUser)
+            .map { _ in
+                return true
+            }.eraseToAnyPublisher()
     }
 }

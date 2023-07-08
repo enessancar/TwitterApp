@@ -24,6 +24,16 @@ final class CustomImage: UIImageView {
         self.contentMode = contentMode
     }
     
+    convenience init(cornerRadius: CGFloat, backgroundColor: UIColor, tintColor: UIColor) {
+        self.init(frame: .zero)
+        
+        layer.cornerRadius = cornerRadius
+        self.backgroundColor = backgroundColor
+        self.tintColor = tintColor
+        isUserInteractionEnabled = true
+        image = UIImage(systemName: "camera.fill")
+    }
+    
     convenience init(cornerRadius: CGFloat) {
         self.init(frame: .zero) 
         self.contentMode = contentMode

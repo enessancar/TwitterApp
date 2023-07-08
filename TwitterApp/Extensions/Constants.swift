@@ -36,4 +36,10 @@ enum Constants: String {
         case login = "Login to your account"
         case loginButton = "Login"
     }
+    
+    enum Profile: String {
+        case hint = "Fill in you data"
+        case bio = "Tell the world about yourself"
+        case sumbit = "Submit"
+    }
 }

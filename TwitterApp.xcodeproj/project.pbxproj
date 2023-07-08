@@ -14,6 +14,8 @@
 		EC06C5462A57F095006FE74A /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5452A57F095006FE74A /* TwitterUser.swift */; };
 		EC06C5482A57F7A7006FE74A /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5472A57F7A7006FE74A /* DatabaseManager.swift */; };
 		EC06C54A2A57FFD6006FE74A /* Alert+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C5492A57FFD6006FE74A /* Alert+Ext.swift */; };
+		EC06C54C2A5818AC006FE74A /* ProfileDataFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C54B2A5818AC006FE74A /* ProfileDataFormVC.swift */; };
+		EC06C54F2A58574E006FE74A /* ProfileTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC06C54E2A58574E006FE74A /* ProfileTextField.swift */; };
 		EC64F7982A53613900C900DC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EC64F7972A53613900C900DC /* GoogleService-Info.plist */; };
 		EC64F79B2A53F91E00C900DC /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79A2A53F91E00C900DC /* FirebaseAuth */; };
 		EC64F79D2A53F91E00C900DC /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = EC64F79C2A53F91E00C900DC /* FirebaseAuthCombine-Community */; };
@@ -55,6 +57,8 @@
 		EC06C5452A57F095006FE74A /* TwitterUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		EC06C5472A57F7A7006FE74A /* DatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		EC06C5492A57FFD6006FE74A /* Alert+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert+Ext.swift"; sourceTree = "<group>"; };
+		EC06C54B2A5818AC006FE74A /* ProfileDataFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormVC.swift; sourceTree = "<group>"; };
+		EC06C54E2A58574E006FE74A /* ProfileTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTextField.swift; sourceTree = "<group>"; };
 		EC64F7972A53613900C900DC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EC64F7AD2A54287500C900DC /* OnboardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingVC.swift; sourceTree = "<group>"; };
 		EC64F7AF2A54440800C900DC /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
@@ -124,6 +128,14 @@
 				EC06C5452A57F095006FE74A /* TwitterUser.swift */,
 			);
 			path = Mdel;
+			sourceTree = "<group>";
+		};
+		EC06C54D2A584E74006FE74A /* TextField */ = {
+			isa = PBXGroup;
+			children = (
+				EC06C54E2A58574E006FE74A /* ProfileTextField.swift */,
+			);
+			path = TextField;
 			sourceTree = "<group>";
 		};
 		EC64F7AC2A54282700C900DC /* Onboarding */ = {
@@ -222,6 +234,7 @@
 		ECE6F0962A4CA5F5000FA778 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				EC06C54D2A584E74006FE74A /* TextField */,
 				ECE6F0A72A4F5801000FA778 /* ImageView */,
 				ECE6F09A2A4CD1D5000FA778 /* Button */,
 				ECE6F0972A4CA5FB000FA778 /* Label */,
@@ -261,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				ECE6F0A32A4F09CF000FA778 /* ProfileVC.swift */,
+				EC06C54B2A5818AC006FE74A /* ProfileDataFormVC.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -365,6 +379,7 @@
 				EC06C5412A56CD2E006FE74A /* AuthManager.swift in Sources */,
 				EC06C53B2A558F78006FE74A /* CustomButton.swift in Sources */,
 				ECE6F0992A4CA62F000FA778 /* CustomLabel.swift in Sources */,
+				EC06C54F2A58574E006FE74A /* ProfileTextField.swift in Sources */,
 				ECE6F08B2A4B8416000FA778 /* NotificationsVC.swift in Sources */,
 				ECE6F0892A4B83ED000FA778 /* DirectMessagesVC.swift in Sources */,
 				EC64F7B02A54440800C900DC /* Color+Ext.swift in Sources */,
@@ -378,6 +393,7 @@
 				ECE6F0732A4B7B8E000FA778 /* SceneDelegate.swift in Sources */,
 				EC64F7AE2A54287500C900DC /* OnboardingVC.swift in Sources */,
 				ECE6F08F2A4B844A000FA778 /* SearchVC.swift in Sources */,
+				EC06C54C2A5818AC006FE74A /* ProfileDataFormVC.swift in Sources */,
 				EC06C5462A57F095006FE74A /* TwitterUser.swift in Sources */,
 				ECE6F0A42A4F09CF000FA778 /* ProfileVC.swift in Sources */,
 				ECE6F0922A4BF740000FA778 /* TweetTableViewCell.swift in Sources */,

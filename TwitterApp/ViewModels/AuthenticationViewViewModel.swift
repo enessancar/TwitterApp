@@ -37,6 +37,9 @@ final class AuthenticationViewViewModel: ObservableObject {
     func createUser() {
         guard let email, let password else { return }
         AuthManager.shared.registerUser(email: email, password: password)
+            .handleEvents(receiveOutput: { [weak self] user in
+                self?.user = user
+            })
             .sink { [weak self] completion in
                 
                 if case .failure(let error) = completion {
@@ -45,7 +48,7 @@ final class AuthenticationViewViewModel: ObservableObject {
                 
             } receiveValue: { [weak self] user in
                 guard let self else { return }
-                self.user = user
+                ov
             }
             .store(in: &subscription)
     }
