@@ -7,8 +7,12 @@
 
 import UIKit
 import FirebaseAuth
+import Combine
 
 final class HomeVC: UIViewController {
+    
+    private var viewModel = HomeViewViewModel()
+    private var subscription: Set<AnyCancellable> = []
     
     private func configureNavigationBar() {
         let size: CGFloat = 36
@@ -31,10 +35,16 @@ final class HomeVC: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureView()
+    }
+    
+    private func configureView() {
         configureTableView()
         configureNavigationBar()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: Constants.Home.signOut.rawValue), style: .plain, target: self, action: #selector(didTapSignOut))
+        
+        bindViews()
     }
     
     private func handleAuthentication() {
@@ -49,6 +59,12 @@ final class HomeVC: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
         handleAuthentication()
+        viewModel.retreiveUser()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        timelineTableView.frame = view.frame
     }
     
     private func configureTableView() {
@@ -57,9 +73,20 @@ final class HomeVC: UIViewController {
         timelineTableView.dataSource = self
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        timelineTableView.frame = view.frame
+    func completeUserOnboarding() {
+        let vc = ProfileDataFormVC()
+        present(vc, animated: true)
+    }
+    
+    func bindViews() {
+        viewModel.$user.sink { [weak self] user in
+            guard let self else { return }
+            guard let user = user else { return }
+            if !user.isUserOnboarded {
+                self.completeUserOnboarding()
+            }
+        }
+        .store(in: &subscription)
     }
 }
 

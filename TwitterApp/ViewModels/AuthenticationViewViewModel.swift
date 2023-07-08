@@ -45,10 +45,21 @@ final class AuthenticationViewViewModel: ObservableObject {
                 if case .failure(let error) = completion {
                     self?.error = error.localizedDescription
                 }
-                
             } receiveValue: { [weak self] user in
                 guard let self else { return }
-                ov
+                self.createRecord(for: user)
+            }
+            .store(in: &subscription)
+    }
+    
+    func createRecord(for user: User) {
+        DatabaseManager.shared.collectionUsers(add: user)
+            .sink { [weak self] completion in
+                if case .failure(let error) = completion {
+                    self?.error = error.localizedDescription
+                }
+            } receiveValue: { state in
+                print("adding user database")
             }
             .store(in: &subscription)
     }
