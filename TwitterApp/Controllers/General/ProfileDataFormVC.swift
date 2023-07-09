@@ -7,9 +7,13 @@
 
 import UIKit
 import PhotosUI
+import Combine
 import SnapKit
 
 final class ProfileDataFormVC: UIViewController {
+    
+    private var viewModel = ProfileDataFormViewViewModel()
+    private var subscription: Set<AnyCancellable> = []
     
     //MARK: - Properties
     private let scrollView: UIScrollView = {
@@ -38,13 +42,35 @@ final class ProfileDataFormVC: UIViewController {
         return textView
     }()
     
-    private let sumbitButton = CustomButton(title: Constants.Profile.sumbit.rawValue, tintColor: .white, backgroundColor: Colors.twitterBlue, fontSize: 16, weight: .bold, cornerRadius: 25)
+    private let submitButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle(Constants.Profile.sumbit.rawValue, for: .normal)
+        button.tintColor = .white
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .bold)
+        button.backgroundColor = Colors.twitterBlue
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.isEnabled = false
+        return button
+    }()
     
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
         configureConstraints()
+        bindViews()
+    }
+    
+    private func bindViews() {
+        displayNameTextField.addTarget(self, action: #selector(didUpdateDisplayName), for: .editingChanged)
+        usernameTextField.addTarget(self, action: #selector(didUpdateUsername), for: .editingChanged)
+        
+        viewModel.$isFormValid.sink { [weak self] buttonState in
+            self?.submitButton.isEnabled = buttonState
+        }
+        .store(in: &subscription)
     }
 }
 
@@ -52,9 +78,9 @@ extension ProfileDataFormVC {
     private func configureView() {
         view.backgroundColor = .systemBackground
         isModalInPresentation = true
-         
+        
         view.addSubviews(scrollView)
-        scrollView.addSubviews(hintLabel, avatarPlaceHolderImageView,displayNameTextField, usernameTextField, bioTextView, sumbitButton)
+        scrollView.addSubviews(hintLabel, avatarPlaceHolderImageView,displayNameTextField, usernameTextField, bioTextView, submitButton)
         
         bioTextView.delegate = self
         displayNameTextField.delegate = self
@@ -82,8 +108,8 @@ extension ProfileDataFormVC {
         }
         
         displayNameTextField.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+            make.leading.equalTo(view.snp.leading).offset(20)
+            make.trailing.equalTo(view.snp.trailing).offset(-20)
             make.top.equalTo(avatarPlaceHolderImageView.snp.bottom).offset(40)
             make.height.equalTo(50)
         }
@@ -99,9 +125,8 @@ extension ProfileDataFormVC {
             make.height.equalTo(150)
         }
         
-        sumbitButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
+        submitButton.snp.makeConstraints { make in
+            make.leading.trailing.equalTo(usernameTextField)
             make.height.equalTo(50)
             make.bottom.equalTo(view.keyboardLayoutGuide.snp.top).offset(-20)
         }
@@ -137,6 +162,11 @@ extension ProfileDataFormVC: UITextViewDelegate {
             textView.textColor = .gray
         }
     }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        viewModel.bio = textView.text
+        viewModel.validateUserProfileForm()
+    }
 }
 
 //MARK: - Objc Func
@@ -154,6 +184,16 @@ extension ProfileDataFormVC {
         picker.delegate = self
         present(picker, animated: true)
     }
+    
+    @objc private func didUpdateDisplayName() {
+        viewModel.displayName = displayNameTextField.text
+        viewModel.validateUserProfileForm()
+    }
+    
+    @objc private func didUpdateUsername() {
+        viewModel.username = usernameTextField.text
+        viewModel.validateUserProfileForm()
+    }
 }
 
 //MARK: - PHPickerViewControllerDelegate
@@ -168,6 +208,8 @@ extension ProfileDataFormVC: PHPickerViewControllerDelegate {
                 if let image = object as? UIImage {
                     DispatchQueue.main.async {
                         self.avatarPlaceHolderImageView.image = image
+                        self.viewModel.imageData = image
+                        self.viewModel.validateUserProfileForm()
                     }
                 }
             }

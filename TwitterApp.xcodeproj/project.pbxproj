@@ -30,6 +30,7 @@
 		EC64F7B02A54440800C900DC /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64F7AF2A54440800C900DC /* Color+Ext.swift */; };
 		EC64F7B22A54699900C900DC /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC64F7B12A54699900C900DC /* RegisterVC.swift */; };
 		ECC9BEA72A59923B00C8BFB5 /* HomeViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9BEA62A59923B00C8BFB5 /* HomeViewViewModel.swift */; };
+		ECC9BEA92A59B5C700C8BFB5 /* ProfileDataFormViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECC9BEA82A59B5C700C8BFB5 /* ProfileDataFormViewModel.swift */; };
 		ECE6F0712A4B7B8E000FA778 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE6F0702A4B7B8E000FA778 /* AppDelegate.swift */; };
 		ECE6F0732A4B7B8E000FA778 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE6F0722A4B7B8E000FA778 /* SceneDelegate.swift */; };
 		ECE6F0752A4B7B8E000FA778 /* MainTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE6F0742A4B7B8E000FA778 /* MainTabBarVC.swift */; };
@@ -65,6 +66,7 @@
 		EC64F7AF2A54440800C900DC /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		EC64F7B12A54699900C900DC /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		ECC9BEA62A59923B00C8BFB5 /* HomeViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewViewModel.swift; sourceTree = "<group>"; };
+		ECC9BEA82A59B5C700C8BFB5 /* ProfileDataFormViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileDataFormViewModel.swift; sourceTree = "<group>"; };
 		ECE6F06D2A4B7B8E000FA778 /* TwitterApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwitterApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECE6F0702A4B7B8E000FA778 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECE6F0722A4B7B8E000FA778 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			children = (
 				EC06C53D2A55C81D006FE74A /* AuthenticationViewViewModel.swift */,
 				ECC9BEA62A59923B00C8BFB5 /* HomeViewViewModel.swift */,
+				ECC9BEA82A59B5C700C8BFB5 /* ProfileDataFormViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 				ECE6F0A92A4F5AFD000FA778 /* CustomImageView.swift in Sources */,
 				ECE6F08D2A4B8430000FA778 /* HomeVC.swift in Sources */,
 				ECE6F0712A4B7B8E000FA778 /* AppDelegate.swift in Sources */,
+				ECC9BEA92A59B5C700C8BFB5 /* ProfileDataFormViewModel.swift in Sources */,
 				ECE6F0A62A4F4E75000FA778 /* ProfileTableViewHeader.swift in Sources */,
 				EC06C53E2A55C81D006FE74A /* AuthenticationViewViewModel.swift in Sources */,
 				EC06C54A2A57FFD6006FE74A /* Alert+Ext.swift in Sources */,
